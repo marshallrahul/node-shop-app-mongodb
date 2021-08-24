@@ -1,0 +1,35 @@
+<%- include ('../includes/head.ejs') -%>
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+    <%- include ('../includes/navigation.ejs') -%>
+    <main>
+        <form action="/admin/<% if (editingMode) { %>edit-product<% } else { %>add-product<% } %>" method="POST">
+            <input type="hidden" name="productId" value="<%= prod._id %>">
+            <div class="form-control">
+                <label for="title">Title</label>
+                <input type="text" name="title" class="" id="title" value="<% if (editingMode) { %><%= prod.title %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="imageUrl">Image URL</label>
+                <input type="text" name="imageUrl" id="imageUrl" value="<% if (editingMode) { %><%= prod.imageUrl %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="price">Price</label>
+                <input type="number" name="price" id="price" step=".01" value="<% if (editingMode) { %><%= prod.price %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" cols="30" rows="10"><% if (editingMode) { %><%= prod.description %><% } %></textarea>
+            </div>
+            <button class="btn" type="submit">
+                <% if (editingMode) { %>
+                    Updata Product
+                <% } else { %>
+                    Add Product
+                <% } %>
+            </button>
+        </form>
+    </main>
+</body>
+</html>
